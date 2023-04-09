@@ -1,0 +1,78 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  engineType = "binary"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int      @id @default(autoincrement())
+  name     String
+  phone    String   @unique
+  email    String   @unique
+  order    Order[]
+  role     Role
+  createAt DateTime? @default(now())
+}
+
+model BreadBook {
+  id       Int      @id @default(autoincrement())
+  name String
+  amount Int
+  detail String
+  price    Float
+  orders   BreadBookOnOrders[]
+  images Image[]
+  createAt DateTime? @default(now())
+}
+
+model Order {
+  id       Int         @id @default(autoincrement())
+  client   User        @relation(fields: [clientId], references: [id])
+  clientId Int
+  total Float
+  products BreadBookOnOrders[]
+  typePagement Catalogue @relation(fields: [ typePagementId ], references: [id])
+  typePagementId Int
+  createAt DateTime? @default(now())
+  
+}
+
+model BreadBookOnOrders {
+ 
+  product BreadBook @relation(fields: [ productId ], references: [id])
+  order Order @relation(fields: [ orderId ], references: [id])
+  amount Int
+  productId Int 
+  orderId Int
+  @@id([orderId, productId])
+
+}
+
+model Catalogue {
+  id   Int    @id @default(autoincrement())
+  type String
+  name String
+  orders Order[]
+}
+
+model Image {
+
+  id Int @id @default(autoincrement())
+  url String 
+  breadBook BreadBook? @relation(fields: [breadBookId], references: [id],onDelete: Cascade)
+  breadBookId Int
+
+}
+
+enum Role {
+  CLIENT
+  ADMIN
+  DELIVERY
+}

@@ -1,0 +1,32 @@
+@url = http://localhost:3000/api/panaderia/catalogue
+@type = application/json
+
+####
+GET {{url}}
+Authorization: 5
+Content-Type: {{type}}
+
+####
+GET {{url}}/1
+Content-Type: {{type}}
+
+####
+POST {{url}}
+Content-Type: {{type}}
+{
+	"type" : "tipo_rpago",
+	"name" : "Efectirvo"
+}
+
+
+####
+PUT {{url}}/1
+Content-Type: {{type}}
+{
+	"type" : "tipo_rpago",
+	"name" : "Efectirvo"
+}
+
+####
+DELETE {{url}}/1
+Content-Type: {{type}}

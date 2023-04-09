@@ -1,0 +1,39 @@
+@url = http://localhost:3000/api/panaderia/bread_box
+@type = application/json
+
+####
+GET {{url}}
+Content-Type: {{type}}
+
+####
+GET {{url}}/6
+Content-Type: {{type}}
+
+####
+POST {{url}}
+Content-Type: {{type}}
+
+{
+	"name" : "Caja de panes rosca ",
+	"amount" : 30,
+	"detail" : "Caja con 30 panes roca y sorpresa",
+	"price" : 2.50,
+	"images" : [ { "url" : "https://cdn.sstatic.net/Img/teams/teams-illo-free-sidebar-promo.svg?v=47faa659a05e" } ]
+}
+
+
+####
+PUT {{url}}/6
+Content-Type: {{type}}
+
+{
+	"name" : "Caja de panes rosca ",
+	"amount" : 30,
+	"detail" : "Caja con 30 panes roca y sorpresa",
+	"price" : 2.50,
+	"images" : [ { "url" : "https://cdn.sstatic.net/Img/teams/teams-illo-free-sidebar-promo.svg?v=47faa659a05e" } ]
+}
+
+####
+DELETE {{url}}/1
+Content-Type: {{type}}

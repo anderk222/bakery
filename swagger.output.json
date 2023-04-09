@@ -1,0 +1,951 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "REST API",
+    "description": "-Api en algunos endpoinst nececitas poner el id del usuario en el header user-id \n en catalogo debes crear los tipos de pagos"
+  },
+  "host": "localhost:8888",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/api/panaderia/user/": {
+      "get": {
+        "tags": [
+          "usuarios"
+        ],
+        "description": "obtener usuarios",
+        "parameters": [
+          {
+            "name": "limit",
+            "type": "number",
+            "in": "query",
+            "required": false
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "number",
+            "required": false
+          },
+          {
+            "name": "user-id",
+            "required": false,
+            "type": "string",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "usuarios"
+        ],
+        "description": "crear nuevo usuario",
+        "parameters": [
+          {
+            "name": "user-id",
+            "required": false,
+            "type": "string",
+            "in": "header"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "example": {
+                "name": "Andersonn Macias",
+                "email": "ander23k@gmail.com",
+                "phone": "095922465",
+                "role": "DELIVERY"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/api/panaderia/user/{id}": {
+      "get": {
+        "tags": [
+          "usuarios"
+        ],
+        "description": "obtener usuario por id",
+        "parameters": [
+          {
+            "name": "user-id",
+            "required": false,
+            "type": "string",
+            "in": "header"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "usuarios"
+        ],
+        "description": "editar usuario",
+        "parameters": [
+          {
+            "name": "user-id",
+            "required": false,
+            "type": "string",
+            "in": "header"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "example": {
+                "name": "Andersonn Macias",
+                "email": "ander23k@gmail.com",
+                "phone": "095922465",
+                "role": "DELIVERY"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "usuarios"
+        ],
+        "description": "eliminar usuario",
+        "parameters": [
+          {
+            "name": "user-id",
+            "required": true,
+            "type": "number",
+            "in": "header"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/panaderia/catalogue/": {
+      "get": {
+        "tags": [
+          "catalogo"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "number",
+            "required": false
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "number",
+            "required": false
+          },
+          {
+            "name": "user-id",
+            "required": true,
+            "type": "number",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "catalogo"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "user-id",
+            "required": true,
+            "type": "number",
+            "in": "header"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "example": {
+                "type": " tipo de catalogo ejemplo tipo pago",
+                "name": "Efectirvo"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/api/panaderia/catalogue/{id}": {
+      "get": {
+        "tags": [
+          "catalogo"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "user-id",
+            "required": true,
+            "type": "number",
+            "in": "header"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "catalogo"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "user-id",
+            "required": true,
+            "type": "number",
+            "in": "header"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "example": {
+                "type": " tipo de catalogo ejemplo tipo pago",
+                "name": "Efectirvo"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "catalogo"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "user-id",
+            "required": true,
+            "type": "number",
+            "in": "header"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/panaderia/catalogue/type/{type}": {
+      "get": {
+        "tags": [
+          "catalogo"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "limit",
+            "type": "number",
+            "in": "query",
+            "required": false
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "number",
+            "required": false
+          },
+          {
+            "name": "user-id",
+            "required": true,
+            "type": "number",
+            "in": "header"
+          },
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/panaderia/bread_box/": {
+      "get": {
+        "tags": [
+          "caja de panes"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "limit",
+            "type": "number",
+            "in": "query",
+            "required": false
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "number",
+            "required": false
+          },
+          {
+            "name": "user-id",
+            "required": true,
+            "type": "number",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "caja de panes"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "user-id",
+            "required": true,
+            "type": "number",
+            "in": "header"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "example": {
+                "name": "caja real ",
+                "amount": 40,
+                "detail": "estas cajas contienen pan real sabroso",
+                "price": 10,
+                "images": [
+                  {
+                    "url": "http://fotopan.com/asa.png"
+                  },
+                  {
+                    "url": "http://fotopan.com/aa2sa.png"
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/panaderia/bread_box/{id}": {
+      "get": {
+        "tags": [
+          "caja de panes"
+        ],
+        "description": "Obtener caja de pan por id",
+        "parameters": [
+          {
+            "name": "user-id",
+            "required": true,
+            "type": "number",
+            "in": "header"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "caja de panes"
+        ],
+        "description": "editar caja de pan",
+        "parameters": [
+          {
+            "name": "user-id",
+            "required": true,
+            "type": "number",
+            "in": "header"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "example": {
+                "name": "caja real ",
+                "amount": 40,
+                "detail": "estas cajas contienen pan real sabroso",
+                "price": 10,
+                "images": [
+                  {
+                    "url": "http://fotopan.com/asa.png"
+                  },
+                  {
+                    "url": "http://fotopan.com/aa2sa.png"
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "caja de panes"
+        ],
+        "description": "Eliminar caja de pan",
+        "parameters": [
+          {
+            "name": "user-id",
+            "required": true,
+            "type": "number",
+            "in": "header"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/panaderia/order/": {
+      "get": {
+        "tags": [
+          "orden"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "limit",
+            "type": "number",
+            "in": "query",
+            "required": false
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "number",
+            "required": false
+          },
+          {
+            "name": "user-id",
+            "required": true,
+            "type": "number",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "orden"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "user-id",
+            "required": true,
+            "type": "number",
+            "in": "header"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "example": {
+                "typePagementId": "tipo de pago  id del catalogo",
+                "clientId": "id del usuario",
+                "products": [
+                  {
+                    "id": "id de la caja",
+                    "amount":"cantidad de cajas de este producto"
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/api/panaderia/order/{id}": {
+      "get": {
+        "tags": [ 
+          "orden"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "limit",
+            "type": "number",
+            "in": "query",
+            "required": false
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "number",
+            "required": false
+          },
+          {
+            "name": "user-id",
+            "required": true,
+            "type": "number",
+            "in": "header"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "orden"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "user-id",
+            "required": true,
+            "type": "number",
+            "in": "header"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "example": {
+                "typePagementId": "tipo de pago  id del catalogo ",
+                "clientId": "id del usuario",
+                "products": [
+                  {
+                    "id": "id de la caja",
+                    "amount":"cantidad de cajas de este producto"
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "orden"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "user-id",
+            "required": true,
+            "type": "number",
+            "in": "header"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/panaderia/image/": {
+      "get": {
+        "tags": [
+          "imagen"
+        ],
+        "description": "obtener imagen(json)",
+        "parameters": [
+          {
+            "name": "limit",
+            "type": "number",
+            "in": "query",
+            "required": false
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "number",
+            "required": false
+          },
+          {
+            "name": "user-id",
+            "required": true,
+            "type": "number",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "imagen"
+        ],
+        "description": "crear nueva imagen",
+        "parameters": [
+          {
+            "name": "user-id",
+            "required": true,
+            "type": "number",
+            "in": "header"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "example": {
+                "url": "image url",
+                "breadBookId": "id de caja de pan"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/api/panaderia/image/{id}": {
+      "get": {
+        "tags": [
+          "imagen"
+        ],
+        "description": "Obtener imagen por id",
+        "parameters": [
+          {
+            "name": "user-id",
+            "required": true,
+            "type": "number",
+            "in": "header"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "imagen"
+        ],
+        "description": "editar imagen",
+        "parameters": [
+          {
+            "name": "user-id",
+            "required": true,
+            "type": "number",
+            "in": "header"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "example": {
+                "url": "image url",
+                "breadBookId": "id de caja de pan"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "imagen"
+        ],
+        "description": "Eliminar imagen por id",
+        "parameters": [
+          {
+            "name": "user-id",
+            "required": false,
+            "type": "string",
+            "in": "header"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/panaderia/image/by_bread_book/{id}": {
+      "get": {
+        "tags": [
+          "imagen"
+        ],
+        "description": "Obtener imagen por caja de pan ",
+        "parameters": [
+          {
+            "name": "limit",
+            "type": "number",
+            "in": "query",
+            "required": false
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "number",
+            "required": false
+          },
+          {
+            "name": "user-id",
+            "required": false,
+            "type": "string",
+            "in": "header"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/panaderia/user/type/{role}": {
+      "get": {
+        "tags": [
+          "usuarios"
+        ],
+        "description": "-obtener usuario por rol | ADMIN | DELIVERY | CLIENT",
+        "parameters": [
+          {
+            "name": "limit",
+            "type": "number",
+            "in": "query",
+            "required": false
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "number",
+            "required": false
+          },
+          {
+            "name": "user-id",
+            "required": false,
+            "type": "string",
+            "in": "header"
+          },
+          {
+            "name": "role",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  
+  }
+}
