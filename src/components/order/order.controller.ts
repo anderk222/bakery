@@ -35,16 +35,19 @@ export const get = async (req: Req, res: Res<Order>, next: Next) => {
 
         const id = parseInt(req.params.id);
 
-        if (!id || id < 0  ) return next(new Error('400?=param id must be a number'));
+        if (!id || id < 0) return next(new Error('400?=param id must be a number'));
+
 
         const data = await prisma.order.findFirst(
             { where: { id }, include: { typePagement: true, client: true, products: { include: { product: true } } } });
 
-        if (!data) return next(`404?=order with id ${id} not exist`);
+        if (!data) return next(new Error('404?=order not found'))
 
         return res.status(200).json({ data });
 
     } catch (err) {
+        console.log(err);
+
 
         return next(err)
 
@@ -113,7 +116,7 @@ export const update = async (req: Req, res: Res<Order>, next: Next) => {
 
         body.products = body?.products ? body.products : [];
 
-        if (!id || id < 0  ) return next(new Error('400?=id must be a number'));
+        if (!id || id < 0) return next(new Error('400?=id must be a number'));
 
         const exist = await prisma.order.findFirst(
             { where: { id }, include: { products: { include: { product: true } } } });
@@ -167,15 +170,16 @@ export const remove = async (req: Req, res: Res<Order>, next: Next) => {
 
         const id = parseInt(req.params.id);
 
-        if (!id || id < 0  ) return next(new Error('400?=param id must be a number'));
+        if (!id || id < 0) return next(new Error('400?=param id must be a number'));
 
-        const data = await prisma.order.findFirst(
-            {
-                where: { id }
-                , include: { typePagement: true, client: true, products: { include: { product: true } } }
-            });
+        const exist = await prisma.order.count({ where: { id } });
 
-        if (!data) return next(new Error(`404?=bread box with id ${id} not exist`));
+        if (!exist) return next(new Error(`404?=bread box with id ${id} not exist`));
+
+        const data = await prisma.order.delete({
+            where: { id },
+            include: { typePagement: true, client: true, products: { include: { product: true } } }
+        })
 
         return res.status(200).json({ data });
 
