@@ -6,7 +6,7 @@ Para mi solucion decidí octar por utiliza la arquitectura basada en componentes
 
 ### Base de datos
 
-Aqui tenemos el diseno de la base de datos
+Aqui tenemos el diseño de la base de datos
 
 ![Screenshot](./md/database.png)
 
